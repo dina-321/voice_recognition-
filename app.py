@@ -1,4 +1,10 @@
+# app.py
+
+# Apply the patch
+import patch_datasets
+
 from flask import Flask, request, jsonify
+from werkzeug.utils import secure_filename
 import tempfile
 import os
 from datasets import load_dataset, Audio
