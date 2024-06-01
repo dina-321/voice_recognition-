@@ -1,10 +1,9 @@
-import datasets.builder
+from datasets.builder import BuilderConfig
 from datasets.utils.version import Version
-from dataclasses import dataclass, field, fields
+from dataclasses import field
 
-# Patch the BuilderConfig to set default_factory for version field
-config_fields = fields(datasets.builder.BuilderConfig)
-for field in config_fields:
-    if field.name == 'version':
-        field.default_factory = lambda: Version("1.0.0")
-        break
+# Define a new version field with default_factory
+new_version_field = field(default_factory=lambda: Version("1.0.0"))
+
+# Apply the new version field to the BuilderConfig class
+BuilderConfig.__dataclass_fields__['version'] = new_version_field
